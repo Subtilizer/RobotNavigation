@@ -35,6 +35,24 @@ def a_star(start ,goal):
     return False
 
 def heuristic_cost_estimate(start ,goal):  #game sri
+        def ComputeCost(self, node, depth, goal):
+        global goalFound
+        miscost, mancost = 0, 0
+        for i in range(1, 4):
+            for j in range(1, 4):
+                if node[str(i) + ',' + str(j)] != goal[str(i) + ',' + str(j)]:
+                    miscost += 1
+                    if node[str(i) + ',' + str(j)] != ' ':
+                        for x in range(1, 4):
+                            for y in range(1, 4):
+                                if goal[str(x) + ',' + str(y)] == node[str(i) + ',' + str(j)]:
+                                    mancost += abs(x - i) + abs(y - j)
+                                    break
+
+        if miscost == 0 and mancost == 0:
+            goalFound = True
+
+        return (mancost + depth), (miscost + depth)
 
 def lowest_f(f_score_node):  #jo
 
